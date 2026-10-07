@@ -1,0 +1,8 @@
+<%- include("partials/header", { title: "Erro" }) %>
+<section class="empty-state">
+  <p class="eyebrow">Não foi possível concluir</p>
+  <h1>Ocorreu um erro</h1>
+  <p class="alert alert-error" role="alert"><%= message %></p>
+  <a class="button button-primary" href="/appointments">Voltar para os agendamentos</a>
+</section>
+<%- include("partials/footer") %>

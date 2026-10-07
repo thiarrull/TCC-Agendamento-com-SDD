@@ -1,0 +1,51 @@
+<%- include("../partials/header", { title: "Agendamentos" }) %>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Agenda</p>
+    <h1>Agendamentos</h1>
+    <p class="page-description">Consulte e organize seus próximos atendimentos.</p>
+  </div>
+  <a class="button button-primary" href="/appointments/new">Novo agendamento</a>
+</section>
+
+<% if (appointments.length === 0) { %>
+  <section class="empty-state" aria-labelledby="empty-title">
+    <h2 id="empty-title">Nenhum agendamento encontrado.</h2>
+    <p>Crie um agendamento para começar a organizar sua agenda.</p>
+    <a class="button button-primary" href="/appointments/new">Criar agendamento</a>
+  </section>
+<% } else { %>
+  <div class="table-scroll" role="region" aria-label="Lista de agendamentos" tabindex="0">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Serviço</th>
+          <th scope="col">Data</th>
+          <th scope="col">Horário</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% appointments.forEach((appointment) => { %>
+          <tr>
+            <th scope="row"><%= appointment.clientName %></th>
+            <td><%= appointment.service %></td>
+            <td><time datetime="<%= appointment.appointmentDate %>"><%= appointment.appointmentDate %></time></td>
+            <td><time datetime="<%= appointment.appointmentTime %>"><%= appointment.appointmentTime %></time></td>
+            <td>
+              <div class="action-list">
+                <a href="/appointments/<%= appointment.id %>">Visualizar</a>
+                <a href="/appointments/<%= appointment.id %>/edit">Editar</a>
+                <form action="/appointments/<%= appointment.id %>/delete" method="post" data-confirm-delete>
+                  <button class="button-link button-danger" type="submit">Excluir</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+<%- include("../partials/footer") %>

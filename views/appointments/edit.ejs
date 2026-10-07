@@ -1,0 +1,17 @@
+<%- include("../partials/header", { title: "Editar agendamento" }) %>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Agenda</p>
+    <h1>Editar agendamento</h1>
+    <p class="page-description">Atualize os dados do atendimento.</p>
+  </div>
+</section>
+<section class="form-card">
+  <%- include("_form", {
+    action: `/appointments/${appointment.id}/update`,
+    appointment,
+    error,
+    submitLabel: "Salvar alterações",
+  }) %>
+</section>
+<%- include("../partials/footer") %>

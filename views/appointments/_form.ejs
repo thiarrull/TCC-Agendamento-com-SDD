@@ -1,0 +1,32 @@
+<% if (error) { %>
+  <p class="alert alert-error" role="alert"><%= error %></p>
+<% } %>
+<form action="<%= action %>" method="post" class="appointment-form">
+  <div class="form-field">
+    <label for="clientName">Nome do cliente</label>
+    <input id="clientName" name="clientName" type="text" value="<%= appointment.clientName || '' %>" autocomplete="name" required>
+  </div>
+  <div class="form-field">
+    <label for="service">Serviço</label>
+    <input id="service" name="service" type="text" value="<%= appointment.service || '' %>" required>
+  </div>
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="appointmentDate">Data</label>
+      <input id="appointmentDate" name="appointmentDate" type="date" value="<%= appointment.appointmentDate || '' %>" required>
+    </div>
+    <div class="form-field">
+      <label for="appointmentTime">Horário</label>
+      <input id="appointmentTime" name="appointmentTime" type="time" value="<%= appointment.appointmentTime || '' %>" required>
+    </div>
+  </div>
+  <div class="form-field">
+    <label for="notes">Observações <span class="optional-label">(opcional)</span></label>
+    <textarea id="notes" name="notes" rows="4" maxlength="500" aria-describedby="notes-help"><%= appointment.notes || '' %></textarea>
+    <small id="notes-help">Até 500 caracteres.</small>
+  </div>
+  <div class="form-actions">
+    <button class="button button-primary" type="submit"><%= submitLabel %></button>
+    <a class="button button-secondary" href="/appointments">Cancelar</a>
+  </div>
+</form>
